@@ -3,7 +3,9 @@ package com.etateck;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 /****************************************************
  *** Created by Fady Fouad on 6/16/2019 at 21:14.***
@@ -28,6 +30,11 @@ public class Main {
         printListLambda(employees,"=========> 30th",employee -> employee.getAge()>30);
         printListLambda(employees,"=========> Less Than30",employee -> employee.getAge()<30);
 
+        Supplier<Integer>integerSupplier = ()-> new Random().nextInt(100);
+        for (int i = 0; i < 10; i++) {
+            System.out.println("\n"+integerSupplier.get());
+        }
+
 
 //        employeeLis.forEach(e -> {
 //            System.out.print(e.getName());
@@ -48,11 +55,15 @@ public class Main {
         boolean print = true;
         if (print) {
             System.out.println(age);
-            for (Employee employee :
-                    employees) {
+//            for (Employee employee :
+//                    employees) {
+//                if (ageCondition.test(employee))
+//                    System.out.println(employee.getName());
+//                }
+            employees.forEach(employee -> {
                 if (ageCondition.test(employee))
                     System.out.println(employee.getName());
-                }
+            });
 
 //            System.out.println("--------------------Less Than 30---------------------");
 //            employees.forEach(employee -> {
