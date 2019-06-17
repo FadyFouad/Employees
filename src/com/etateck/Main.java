@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
+import java.util.function.IntPredicate;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -19,6 +20,7 @@ public class Main {
         Employee employee2 = new Employee("Fady2", 25);
         Employee employee4 = new Employee("Fady4", 31);
         Employee employee5 = new Employee("Fady5", 35);
+
         List<Employee> employees = new ArrayList<>();
         employees.add(employee1);
         employees.add(employee2);
@@ -30,47 +32,47 @@ public class Main {
         printListLambda(employees,"=========> 30th",employee -> employee.getAge()>30);
         printListLambda(employees,"=========> Less Than30",employee -> employee.getAge()<30);
 
-        Supplier<Integer>integerSupplier = ()-> new Random().nextInt(100);
-        for (int i = 0; i < 10; i++) {
-            System.out.println("\n"+integerSupplier.get());
-        }
+        IntPredicate intPredicate = value -> value>10;
+        IntPredicate intPredicate1 = value -> value<20;
 
+        IntPredicate intPredicate_ = new IntPredicate() {
+            @Override
+            public boolean test(int value) {
+                return value>10;
+            }
+        };
+        IntPredicate intPredicate_1 = new IntPredicate() {
+            @Override
+            public boolean test(int value) {
+                return value<20;
+            }
+        };
 
-//        employeeLis.forEach(e -> {
-//            System.out.print(e.getName());
-//            System.out.println(" : "+e.getAge());
-//        });
+        System.out.println("----------------------------------");
+        System.out.println(intPredicate.and(intPredicate1).test(15));
+        System.out.println(intPredicate_.and(intPredicate_1).test(15));
 
-
-//        for (Employee employee :
-//                employeeLis) {
-//            if (employee.getAge() > 30){
-//                System.out.println(employee.getName());
+//        Predicate<Employee> employeePredicate = new Predicate<Employee>() {
+//            @Override
+//            public boolean test(Employee employee) {
+//                return employee.getAge()<27;
 //            }
+//        };
+//        printListLambda(employees,"-------------- age less than 27",employeePredicate);
+
+//        System.out.println("---------------------------------------------");
+//        Supplier<Integer>integerSupplier = ()-> new Random().nextInt(100);
+//        for (int i = 0; i < 10; i++) {
+//            System.out.println(integerSupplier.get());
 //        }
-
-
     }
     private static void printListLambda(List<Employee>employees, String age, Predicate<Employee>ageCondition){
-        boolean print = true;
-        if (print) {
+
             System.out.println(age);
-//            for (Employee employee :
-//                    employees) {
-//                if (ageCondition.test(employee))
-//                    System.out.println(employee.getName());
-//                }
             employees.forEach(employee -> {
                 if (ageCondition.test(employee))
                     System.out.println(employee.getName());
             });
 
-//            System.out.println("--------------------Less Than 30---------------------");
-//            employees.forEach(employee -> {
-//                if (employee.getAge() < 30) {
-//                    System.out.println(employee.getName());
-//                }
-//            });
-        }
     }
 }
