@@ -43,7 +43,7 @@ public class Main {
             Function<Employee,String>stringFunction = e ->
                     e.getName().substring(e.getName().indexOf(' ')+1);
             String s = stringFunction.apply(employees.get(employees.indexOf(employee)));
-            System.out.println("Last Name Of "+firstName +" is "+s);
+            System.out.println("Last Name Of "+firstName +" is "+s);//s = lastName
         });
     }
     private static void printListLambda(List<Employee>employees, String age, Predicate<Employee>ageCondition){
