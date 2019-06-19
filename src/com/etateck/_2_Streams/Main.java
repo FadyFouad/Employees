@@ -81,8 +81,7 @@ public class Main {
         long count = Stream.of("AB", "AF", "FFF", "AAA", "DG", "AD", "EF")
                 .filter(s -> {
                     System.out.println(s);
-                    return s.length() == 3;
-                })//;//Need Terminal operation to execute
+                    return s.length() == 3; })//;//Need Terminal operation to execute
                 .count();
 
         System.out.println(count);
