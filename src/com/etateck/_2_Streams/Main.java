@@ -1,7 +1,5 @@
 package com.etateck._2_Streams;
 
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
